@@ -9,13 +9,20 @@
 import XCTest
 import FeedStoreChallenge
 
+fileprivate let dbURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("\(FileSystemFeedStore.self).db")
+
 class FileSystemFeedStoreChallengeTests: XCTestCase, FeedStoreSpecs {
     
     override class func setUp() {
         super.setUp()
         
-        let localURL: URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("\(FileSystemFeedStore.self).db")
-        try? FileManager.default.removeItem(at: localURL)
+        try? FileManager.default.removeItem(at: dbURL)
+    }
+    
+    override func tearDown() {
+        super.tearDown()
+        
+        try? FileManager.default.removeItem(at: dbURL)
     }
     
     func test_retrieve_deliversEmptyOnEmptyCache() {

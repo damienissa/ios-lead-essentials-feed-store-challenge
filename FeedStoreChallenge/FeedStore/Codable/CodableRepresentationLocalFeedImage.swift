@@ -8,14 +8,14 @@
 
 import Foundation
 
-struct CodableRepresentationLocalFeedImage: Codable {
+public struct CodableRepresentationLocalFeedImage: Codable {
     
     public let id: UUID
     public let description: String?
     public let location: String?
     public let url: URL
     
-    init(_ image: LocalFeedImage) {
+    public init(_ image: LocalFeedImage) {
         
         self.id = image.id
         self.description = image.description
@@ -30,14 +30,14 @@ struct CodableRepresentationLocalFeedImage: Codable {
 
 // MARK: - Helper
 
-extension Array where Element == LocalFeedImage {
+public extension Array where Element == LocalFeedImage {
     
     var codable: [CodableRepresentationLocalFeedImage] {
         map(CodableRepresentationLocalFeedImage.init)
     }
 }
 
-extension Array where Element == CodableRepresentationLocalFeedImage {
+public extension Array where Element == CodableRepresentationLocalFeedImage {
     
     var local: [LocalFeedImage] {
         map { $0.image }

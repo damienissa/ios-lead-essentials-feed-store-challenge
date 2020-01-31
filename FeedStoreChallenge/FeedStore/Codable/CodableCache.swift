@@ -8,8 +8,14 @@
 
 import Foundation
 
-struct CodableCache<Value: Codable>: Codable {
+public struct CodableCache<Value: Codable>: Codable {
     
-    let timestamp: Date
-    let value: [Value]
+    public let timestamp: Date
+    public let value: [Value]
+    
+    public init(timestamp: Date, value: [Value]) {
+        
+        self.timestamp = timestamp
+        self.value = value
+    }
 }
