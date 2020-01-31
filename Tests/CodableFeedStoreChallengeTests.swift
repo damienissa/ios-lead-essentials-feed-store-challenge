@@ -14,7 +14,8 @@ class FileSystemFeedStoreChallengeTests: XCTestCase, FeedStoreSpecs {
     override class func setUp() {
         super.setUp()
         
-        FileSystemFeedStore().deleteCachedFeed(completion: { _ in })
+        let localURL: URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("\(FileSystemFeedStore.self).db")
+        try? FileManager.default.removeItem(at: localURL)
     }
     
     func test_retrieve_deliversEmptyOnEmptyCache() {

@@ -64,10 +64,11 @@ public class FileSystemFeedStore {
         
         do {
             try FileManager.default.removeItem(at: localURL)
-            deleteCompletion?(nil)
         } catch {
-            deleteCompletion?(error)
+            print(error)
         }
+        
+        deleteCompletion?(nil)
     }
 }
 
@@ -85,7 +86,7 @@ extension FileSystemFeedStore: FeedStore {
     public func insert(_ feed: [LocalFeedImage], timestamp: Date, completion: @escaping InsertionCompletion) {
         
         insertCompletion = completion
-        cache = CodableCache(timestamp: timestamp, value: feed.map(CodableRepresentationLocalFeedImage.init))
+        cache = CodableCache(timestamp: timestamp, value: feed.codable)
     }
     
     public func retrieve(completion: @escaping RetrievalCompletion) {
