@@ -8,12 +8,12 @@
 
 import Foundation
 
+fileprivate struct Cache<Value> {
+    let timeStamp: Date
+    let value: [Value]
+}
+
 public final class InMemoryFeedStore {
-    
-    private struct Cache<Value> {
-        let timeStamp: Date
-        let value: [Value]
-    }
     
     private var cache: Cache<LocalFeedImage>?
     
