@@ -17,6 +17,9 @@ public class UserDefaultsFeedStore<Defaults: UserDefaults> {
     public init() { }
 }
 
+
+// MARK: - FeedStore
+
 extension UserDefaultsFeedStore: FeedStore {
     
     public func deleteCachedFeed(completion: @escaping DeletionCompletion) {
